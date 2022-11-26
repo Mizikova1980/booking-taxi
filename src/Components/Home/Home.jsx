@@ -20,7 +20,20 @@ export default class Home extends React.Component {
       this.setState({currentPage: page})
     }
 
+    logout = (page) => {
+        this.setState({currentPage: page})
+    }
+
     render () {
+        
+        if (this.state.currentPage==="login") {
+            return (
+              <Login setLogin={false}/>
+              
+            )
+        }
+        
+        
         return (
             <div className='wrapper-content'>   
                 <header>
@@ -62,7 +75,7 @@ export default class Home extends React.Component {
                                             <span onClick={() => {this.navigateTo("profile")}} >Профиль</span>
                                         </li>
                                         <li className='navbar-item'>
-                                            <span onClick={() => {this.navigateTo("login")}}>Выйти</span>
+                                            <span onClick={() => {this.logout("login")}}>Выйти</span>
                                         </li>
                                     </ul>
                                 </nav>
