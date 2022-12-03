@@ -1,30 +1,27 @@
-import React, { useState, createContext } from "react"
+import React from "react"
 
-export const AuthContext = createContext()
+export const AuthContext = React.createContext()
 
 export const AuthProvider  = ({children}) => {
-    const [isLoggedIn, setLoggedIn] = useState(false)
+    const [isLoggedIn, setIsLoggedIn] = React.useState(false)
 
-    const logIn = (email, password) => new Promise ((resolve, reject) => {
-        if (email !== 'valid@gmail.com' || password !== '123456') return reject('fail')
-        resolve('success')
-        setLoggedIn(true)
-    })
+    const logIn = (email, password) => {
+        if (email !== 'valid@gmail.com' && password !== "123456") {
+            return alert ("неправильный пароль или логин")}
+
+        setIsLoggedIn(true)
+    }
 
     const logOut =() => {
-        setLoggedIn(false)
+        setIsLoggedIn(false)
     }
         
-
-    const providerVariables ={
-        isLoggedIn, logIn, logOut
-    }
-
     return (
-        <AuthContext.Provider value={providerVariables}>
-            {{children}}
+        <AuthContext.Provider value ={{ logIn, logOut, isLoggedIn}}>
+            {children}
         </AuthContext.Provider>
     )
+    
 
 }
 

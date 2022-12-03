@@ -1,0 +1,40 @@
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1C1A19;
+    min-height: 102px;
+    width: 100%;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 21px 27px;
+    position: relative;
+}
+
+.left-side {
+    display: flex;
+    flex:1
+    
+}
+
+.right-side {
+    display: flex;
+    
+ 
+    
+}
+
+.navbar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    margin: 18px 23px 18px 0;
+
+}
+
+.navbar-item:hover {
+    color: #FDBF5A;
+}
