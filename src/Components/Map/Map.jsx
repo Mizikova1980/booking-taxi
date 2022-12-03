@@ -10,7 +10,7 @@ export default function Map(events) {
         mapboxgl.accessToken = 'pk.eyJ1IjoibWl6aWtvdmExOTgwIiwiYSI6ImNsYjR4ZG4yaDAxN2wzcnFmYnF6emV3MzAifQ.-LUFFkIPYb5fWYhArUMx-A';
         const map = new mapboxgl.Map({
             container: mapContainer.current, // container ID
-            style: 'mapbox://styles/mapbox/streets-v9', // style URL
+            style: 'mapbox://styles/mapbox/streets-v11', // style URL
             center: [30.3056504, 59.9429126], // starting position [lng, lat]
             zoom: 10 // starting zoom
         });

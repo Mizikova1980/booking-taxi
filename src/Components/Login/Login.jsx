@@ -1,10 +1,23 @@
 import React from 'react';
-import LoginForm from '../LoginForm/LoginForm';
+import AuthForm from './../Auth/index'
+import {WithAuth} from './../../contexts'
 
 
 
-export default function Login({setLogin}) {
+function Login(events, props) {
     
+    const {logIn} = events;
+    const {isLoggedIn} = props
+
+    
+
+  function send(e){
+    logIn(e.mail, e.password)
+    console.log(e)
+    console.log(isLoggedIn)
+
+  }
+
     return (
         <div className='wrapper-login'>
             <div className='left'>
@@ -31,10 +44,11 @@ export default function Login({setLogin}) {
             </div>
             <div className='right'>
                 <main>
-                <LoginForm setLogin={setLogin}/>
+                    <AuthForm formSend={send}/>
                 </main>
             </div>
         </div>
     )
 };
 
+export default WithAuth(Login)
