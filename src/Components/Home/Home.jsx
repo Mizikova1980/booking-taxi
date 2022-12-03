@@ -2,19 +2,21 @@ import React from 'react'
 import Login from '../Login/Login'
 import Map from '../Map/Map'
 import Profile from '../Profile/Profile'
+import FormBooking from '../FormBooking/FormBooking'
+
 
 
 
 const PAGES = {
     login: <Login/>,
-    map: <Map/>,
-    profile: <Profile/>
+    profile: <Profile/>,
+    formBooking: <FormBooking/>
 
 }
 
 
 export default class Home extends React.Component {
-    state = {currentPage: "map"}
+    state = {currentPage: "formBooking"}
 
     navigateTo = (page) => {
       this.setState({currentPage: page})
@@ -29,11 +31,9 @@ export default class Home extends React.Component {
         if (this.state.currentPage==="login") {
             return (
               <Login setLogin={false}/>
-              
             )
         }
-        
-        
+       
         return (
             <div className='wrapper-content'>   
                 <header>
@@ -60,8 +60,6 @@ export default class Home extends React.Component {
                                         <path d="M128.792 0.159998L127.136 6.136H103.16L106.976 0.159998H128.792ZM119.468 8.548L115.112 24.964H106.868L111.332 8.548H119.468ZM150.984 6.208H135.432L140.616 0.159998H149.688L150.984 6.208ZM155.016 24.964H145.98L143.532 15.172H138.42L131.184 24.964H120.636L133.524 8.512H151.488L155.016 24.964ZM185.421 0.196L179.625 6.172L162.201 6.136L160.761 0.267999H169.797L170.481 3.076L173.145 0.231999L185.421 0.196ZM177.393 8.548L173.037 13.336L175.485 25L166.125 24.964L165.441 21.94L162.741 25H150.536L163.173 11.032L162.669 8.62L177.393 8.548ZM195.114 0.159998L193.458 6.208H184.782L186.51 0.159998H195.114ZM192.918 8.548L188.418 24.964H179.67L184.242 8.548H192.918Z" fill="#FDBF5A"/>
                                     </svg>  
                                 </div>
-                                
-                                
                             </div>
                             <div className='icon'> </div>
                             </div>
@@ -69,7 +67,7 @@ export default class Home extends React.Component {
                                 <nav>
                                     <ul className='navbar'>
                                         <li className='navbar-item'>
-                                            <span onClick={() => {this.navigateTo("map")}}>Карта</span>
+                                            <span onClick={() => {this.navigateTo("formBooking")}}>Карта</span>
                                         </li>
                                         <li className='navbar-item'>
                                             <span onClick={() => {this.navigateTo("profile")}} >Профиль</span>
@@ -84,16 +82,14 @@ export default class Home extends React.Component {
                 </header>
                 <main>
                     <section className='section-wrapper'>
+                        <div className='Map-container'>
+                             <Map/>
+                        </div>
                         {PAGES[this.state.currentPage]}
                     </section>
                 </main>
             </div>
-           
-        
-           
         )
     }
-    
-    
 };
 

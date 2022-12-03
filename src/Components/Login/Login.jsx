@@ -2,6 +2,7 @@ import React from 'react';
 import LoginForm from '../LoginForm/LoginForm';
 
 
+
 export default function Login({setLogin}) {
     
     return (
@@ -32,15 +33,8 @@ export default function Login({setLogin}) {
                 <main>
                 <LoginForm setLogin={setLogin}/>
                 </main>
-                
-                
             </div>
-        
         </div>
-        
-        
-        
-        
-       
     )
 };
+

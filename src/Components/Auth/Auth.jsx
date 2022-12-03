@@ -1,4 +1,5 @@
 import React from 'react';
+import { Input } from '@mui/material'
 
 export default function Auth() {
     
@@ -6,11 +7,11 @@ export default function Auth() {
             <form className='form-login'>
                     <h1 className='form-title'>Регистрация</h1>
                     <label htmlFor="email" className='label-login'>Email*</label>
-                    <input id='email' type='email' name='email'className='form-input' placeholder='mail@mail.ru'></input>
+                    <Input id='email' type='email' name='email'className='form-input' placeholder='mail@mail.ru'></Input>
                     <label htmlFor="name" className='label-login'>Как вас зовут?*</label>
-                    <input id='name' type='text' name='name'className='form-input' placeholder='Петр Александрович'></input>
+                    <Input id='name' type='text' name='name'className='form-input' placeholder='Петр Александрович'></Input>
                     <label htmlFor="password" className='label-login'>Придумайте пароль*</label>
-                    <input id='password' type='password' name='password' className='form-input' placeholder='***************'></input>
+                    <Input id='password' type='password' name='password' className='form-input' placeholder='***************'></Input>
                     <div className='forgotPassword'>Забыли пароль?</div>
                     <button type='submit' className='form-btn'>Зарегистрироваться</button>
                     <div className='auth-link'>
