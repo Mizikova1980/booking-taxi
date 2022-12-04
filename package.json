@@ -8,6 +8,7 @@
     "@mui/material": "^5.10.16",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
+    "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^13.5.0",
     "jest-junit": "^15.0.0",
     "loft-taxi-mui-theme": "^1.2.0",
@@ -45,7 +46,8 @@
     ]
   },
   "devDependencies": {
-    "cz-conventional-changelog": "^3.3.0"
+    "cz-conventional-changelog": "^3.3.0",
+    "react-test-renderer": "^18.2.0"
   },
   "config": {
     "commitizen": {

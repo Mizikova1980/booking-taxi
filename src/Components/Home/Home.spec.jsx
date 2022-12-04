@@ -1,9 +1,9 @@
 
 import React from "react"
 import Home from './Home'
-import { render, fireEvent, screen} from '@testing-library/react'
+import { render, fireEvent} from '@testing-library/react'
 
-jest.mock("./../Map/Map.jsx", () => ({ Map: () => <div>Map component</div>}))
+jest.mock("./../FormBooking/FormBooking.jsx", () => ({ FormBooking: () => <div>Map component</div>}))
 jest.mock('./../Profile/Profile.jsx', () => ({ Profile: () => <div>Profile component</div>}))
 jest.mock('./../Login/Login.jsx', () => ({ Login: () => <div>Login component</div>}))
 
