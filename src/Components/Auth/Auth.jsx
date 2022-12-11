@@ -1,8 +1,15 @@
 import React from 'react';
 import { Input } from '@mui/material'
+import { useNavigate } from 'react-router-dom';
 
 export default function Auth(events) {
-    const {changeSing} = events;
+   const navigate = useNavigate()
+   const login = () => navigate('/')
+   
+
+
+
+
     return (
             <div className='form-login'>
                     <h1 className='form-title'>Регистрация</h1>
@@ -15,7 +22,7 @@ export default function Auth(events) {
                     <div className='forgotPassword'>Забыли пароль?</div>
                     <button type='submit' className='form-btn'>Зарегистрироваться</button>
                     <div className='auth-link'>
-                        <span className='link-text' data-link='change-sing' onClick={changeSing}>
+                        <span className='link-text' data-link='change-sing' onClick={login}>
                            Уже зарегистрированы?
                         </span>
                         <span className='link'>

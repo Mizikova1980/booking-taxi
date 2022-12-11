@@ -1,19 +1,22 @@
 import React from 'react'
-import {WithAuth} from './../../contexts'
-
-
-
+import { useDispatch } from 'react-redux'
+import {logOut} from './../../actions'
+import { NavLink } from 'react-router-dom'
 
 
  function Header (events){
-    const {clickNavItem, activeContent} = events
-
+    const dispatch = useDispatch()
+    
     const navList = [
-        {name: 'map', value: 'Карта', },
-        {name: 'profile', value: 'Профиль',},
-        {name: 'out', value: 'Выйти', },
+        {route: '/', name: 'map', value: 'Карта', },
+        {route: '/profile',name: 'profile', value: 'Профиль',},
+        {route: '/', name: 'out', value: 'Выйти', },
     ]
     
+    function logout (e) {
+        e.preventDefault()
+        dispatch(logOut())
+    }
           
     return (
             
@@ -47,13 +50,20 @@ import {WithAuth} from './../../contexts'
                 <div className='right-side'>
                     <nav>
                         <ul className='navbar'>
-                        {navList.map((el, i) => (
+                         {navList.map((el, i) => (
                             <li
                                 key={i}
-                                data-active={activeContent === el.name}
+                                data-active={'false'}
                                 className="navbar-item"
-                                onClick={() => clickNavItem(el)}
-                            >{el.value}</li>
+                            >
+                                {
+                                (el.name === 'out') 
+                                ? <NavLink to={el.route} onClick={logout}>{el.value}</NavLink>
+                                : <NavLink to={el.route}>{el.value}</NavLink> 
+                            
+                                }
+                                
+                            </li>
                         ))}
                         </ul>
                     </nav>
@@ -66,4 +76,4 @@ import {WithAuth} from './../../contexts'
     }
 
 
-export default WithAuth(Header)
+export default (Header)

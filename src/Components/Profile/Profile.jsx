@@ -1,7 +1,11 @@
 import React from 'react'
 import { Input } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 export default function Profile(params) {
+    const navigate = useNavigate()
+    
+    
     return (
         <div className='form-wrapper'>
             <h1 className='form-title'>Профиль</h1>
@@ -54,7 +58,7 @@ export default function Profile(params) {
                 </div>
                 
                 
-                <button type='submit' className='form-btn' >Сохранить</button>
+                <button type='submit' className='form-btn' onClick={() => navigate('map')}>Сохранить</button>
             </form>
         </div>
     )

@@ -3,11 +3,11 @@ import React from 'react';
 import './App.css';
 import Home from './Components/Home/Home';
 import Login from './Components/Login/Login';
-import {WithAuth} from './contexts'
+import { useSelector } from 'react-redux';
 
 
-function App (props) {
- const {isLoggedIn} = props
+function App (events) {
+ const {isLoggedIn} = useSelector(state => state.auth)
  
   return (
     <div className='wrapper'>
@@ -19,7 +19,7 @@ function App (props) {
  
 }
 
-export default WithAuth(App);
+export default App;
 
 
 

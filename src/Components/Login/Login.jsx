@@ -1,22 +1,20 @@
 import React from 'react';
 import AuthForm from './../Auth/index'
-import {WithAuth} from './../../contexts'
+import { useDispatch } from 'react-redux'
+import { authenticate, registration } from './../../actions';
 
 
 
-function Login(events, props) {
+
+function Login(events) {
+    const dispatch = useDispatch();
     
-    const {logIn} = events;
-    const {isLoggedIn} = props
-
     
-
-  function send(e){
-    logIn(e.mail, e.password)
-    console.log(e)
-    console.log(isLoggedIn)
-
-  }
+    const send = (e) => {
+        (e.sendType === "SignIn") && dispatch(authenticate(e.email, e.password));
+        (e.sendType === "SignUp") && dispatch(registration(e.email, e.password, e.name));
+        
+      }
 
     return (
         <div className='wrapper-login'>
@@ -51,4 +49,4 @@ function Login(events, props) {
     )
 };
 
-export default WithAuth(Login)
+export default (Login)

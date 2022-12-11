@@ -1,11 +1,13 @@
 import React from 'react';
 import { Input } from '@mui/material'
+import { useNavigate } from 'react-router-dom';
 
 
 
 export default function LoginForm(events) {
-
-    const {changeSing} = events
+  
+    const navigate = useNavigate()
+    const registration = () => navigate('/registration') 
     
     return (
         
@@ -18,7 +20,7 @@ export default function LoginForm(events) {
             <div className='forgotPassword'>Забыли пароль?</div>
             <button type='submit' className='form-btn'>Войти</button>
             <div className='auth-link'>
-                <span className='link-text' data-link='change-sing' onClick={changeSing}>
+                <span className='link-text' data-link='change-sing' onClick={registration}>
                 Новый пользователь?
                 </span>
                 <span className='link'>
