@@ -1,8 +1,8 @@
 import React from 'react'
 import Map from '../Map/Map'
 import Profile from '../Profile'
-import FormBookingModalClose from './../FormBooking/FormBookingModalClose'
-import FormBooking from '../FormBooking/FormBooking'
+//import FormBooking from '../FormBooking'
+import BookingForm from './../FormBooking/BookingForm'
 import Header from './../Header/Header'
 import PageContent from './../PageContent/PageContent'
 import { Routes, Route } from 'react-router-dom'
@@ -30,10 +30,9 @@ import { useSelector } from 'react-redux'
                              <div className='widow-modal' >
                                 <div className='widow-modal__content'>
                                     <Routes>
-                                        <Route path='/' element = {<PageContent children={<FormBooking/>} />}/>
+                                        <Route path='/' element = {<PageContent children={<BookingForm/>} />}/>
                                         <Route path='/profile' element = {<PageContent children={<Profile/>} />}/>
-                                        <Route path='/booking' element = {<PageContent children={<FormBooking/>} />}/>
-                                        <Route path='/bookingComplited' element = {<PageContent children={<FormBookingModalClose/>} />}/>
+                                        <Route path='/booking' element = {<PageContent children={<BookingForm/>} />}/>
                                     </Routes>
                                 </div>
                              </div>

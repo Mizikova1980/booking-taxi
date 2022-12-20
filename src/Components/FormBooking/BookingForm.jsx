@@ -1,36 +1,42 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Select from '../UI/select'
 import { useNavigate } from 'react-router-dom'
-import {fetchAddressesRequest} from './../../actions.js'
+import { useDispatch, useSelector } from 'react-redux'
+import {fetchAddressesList} from './../../actions.js'
+//import {fetchAddresses} from './../../api.js'
 
-//import {fetchAddressList} from './../../api.js'
 
 
-
-export default function FormBooking() {
-    const navigate = useNavigate() 
-        
+export default function BookingForm() {
+    
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
     const selectArr = []
-      
-    //const getAddressList = fetchAddressList(selectArr)
-    //console.log(selectArr)
-       
+    function fetch (e) {
+        console.log('ghb')
+        dispatch(fetchAddressesList())
+        console.log('oihrgaih')
+        
+    }
+    
+    const addresses = useSelector(state => state.addresses)
+    console.log(addresses)
         
     const [selectValue, setSelectValue] = React.useState(null);
-
+   
     
     return (
         <div className='map-container'>
-            <form className='form-booking'> 
+            <form className='form-booking' onClick={fetch}> 
                  <div className='route'>
                     <div className='label-wrap' >
                         <label htmlFor='from' className=''>
-                            <Select onClick={fetchAddressesRequest} list={selectArr} preview="Откуда" onChange={e => setSelectValue(e.value) }  id='from' type='' name='from'/>
+                            <Select list={selectArr} preview="Откуда" onChange={e => setSelectValue(e.value) }  id='from' type='' name='from'/>
                         </label>
                     </div>
                     <div className='label-wrap'>
                         <label htmlFor='to' className=''>
-                        <Select onClick={fetchAddressesRequest} list={selectArr} preview="Куда" onChange={e => setSelectValue(e.value) } id='to' type='' name='to'/>
+                        <Select list={selectArr} preview="Куда" onChange={e => setSelectValue(e.value) } id='to' type='' name='to'/>
                     </label>
                     </div>
                 </div>

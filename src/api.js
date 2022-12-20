@@ -18,11 +18,11 @@ export const serverRegister = (email, password, name) => {
 	return fetch(`https://loft-taxi.glitch.me/register?email=${email}&password=${password}&name=${name}`, ops).then(res => res.json())
 }
 
-export const fetchAddressList = () => {
+export const fetchAddresses = () => {
 	const ops = {
 		method: 'GET',
 	};
-	return fetch('https://loft-taxi.glitch.me/addressList', ops).then(res => res.json().then(adresses => console.log(adresses)))
+	return fetch('https://loft-taxi.glitch.me/addressList', ops).then(res => res.json())
 }
 
 
