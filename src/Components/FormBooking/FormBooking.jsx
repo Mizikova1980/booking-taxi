@@ -1,21 +1,36 @@
 import React from 'react'
-import { Input } from '@mui/material'
+import Select from '../UI/select'
+import { useNavigate } from 'react-router-dom'
+import {fetchAddressesRequest} from './../../actions.js'
+
+//import {fetchAddressList} from './../../api.js'
+
+
 
 export default function FormBooking() {
+    const navigate = useNavigate() 
+        
+    const selectArr = []
       
+    //const getAddressList = fetchAddressList(selectArr)
+    //console.log(selectArr)
+       
+        
+    const [selectValue, setSelectValue] = React.useState(null);
+
     
     return (
         <div className='map-container'>
             <form className='form-booking'> 
                  <div className='route'>
-                    <div className='label-wrap'>
+                    <div className='label-wrap' >
                         <label htmlFor='from' className=''>
-                             <Input id='from' type='' name='from' className='form-input' placeholder='Откуда'/>
+                            <Select onClick={fetchAddressesRequest} list={selectArr} preview="Откуда" onChange={e => setSelectValue(e.value) }  id='from' type='' name='from'/>
                         </label>
                     </div>
                     <div className='label-wrap'>
                         <label htmlFor='to' className=''>
-                        <Input id='to' type='' name='to' className='form-input' placeholder='Куда'/>
+                        <Select onClick={fetchAddressesRequest} list={selectArr} preview="Куда" onChange={e => setSelectValue(e.value) } id='to' type='' name='to'/>
                     </label>
                     </div>
                 </div>
@@ -40,7 +55,7 @@ export default function FormBooking() {
                     </div>
                   
                 </div>
-                <button type='submit' className='form-btn'>Заказать</button>
+                <button type='submit' className='form-btn' onClick={() => navigate('/bookingComplited')}>Заказать</button>
             </form>
         </div>
     )

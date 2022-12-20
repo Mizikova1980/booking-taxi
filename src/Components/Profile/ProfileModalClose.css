@@ -1,0 +1,41 @@
+
+.form-wrapper {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 588px;
+    width: 888px;
+    z-index: 1000;
+    background: white;
+    border-radius: 20px;
+    transform: translate(-50%,-50%);
+    top:50%;
+    left: 50%;
+
+
+}
+
+.form-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-title {
+    color:black;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 13px;
+
+}
+
+.form-desc {
+    color:#7B7B7B;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 51px;
+}
+

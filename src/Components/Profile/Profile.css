@@ -111,5 +111,44 @@
     border-radius: 20px;
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
     margin: 0 0 0 50px;
+    padding: 18px 18px;
+    display: flex;
+    flex-direction: column;
     
+    
+}
+.cardView__date {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+
+
+
+.card-date {
+    font-size: 12px;
+    font-weight: 400;
+    
+}
+
+.card-number {
+    font-size: 21px;
+    font-weight: 400;
+    margin-bottom: 35px;
+}
+
+.cardView__icons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#icon1 {
+    position: relative;
+}
+
+#icon2 {
+    position: absolute;
+    left:86%;
+    
+
 }
