@@ -5,9 +5,11 @@ import {takeEvery, call, put} from 'redux-saga/effects'
 
 export function* authenticateSaga (action) {
     const {email, password} = action.payload
-    const {success} = yield call (serverLogin, email, password)
+    const {success, token} = yield call (serverLogin, email, password)
+    console.log(success, token)
     if (success) {
-        yield put (logIn())
+        yield put (logIn(token))
+        
     }
    
 }

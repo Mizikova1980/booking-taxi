@@ -23,7 +23,9 @@ const placeHolder = (preview, value, simbol) => {
 
 export default function ProfileForm(params) {
     const dispatch = useDispatch();
-    const {token} = useSelector(state => state.auth)
+    const {authToken} = useSelector(state => state.auth)
+    const {isRegCard} = useSelector(state => state.regCard)
+    
     
     
         const [name, setName] = useState("")
@@ -37,8 +39,12 @@ export default function ProfileForm(params) {
             let mm = Number(date.split('/')[0]);
             let yy = Number(date.split('/')[1]);
             let expiryDate=mm+'/'+yy
-            let cardName = name
-            dispatch(registrationCard(cardNumber, expiryDate, cardName, cvc, token))
+            let cardName = setName
+            let token = authToken
+            let body= {cardNumber, expiryDate, cardName, cvc, token}
+            dispatch(registrationCard(body))
+            console.log(isRegCard)    
+            console.log(body)    
           }
     
     return (

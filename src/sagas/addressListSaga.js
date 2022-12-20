@@ -7,10 +7,12 @@ export function* fetchAddressListSaga (action) {
     try {
         const {error, data} = yield call(fetchAddressList);
         if(!error) yield put(fetchAddressesSuccess(data.addresses));
+        console.log(data.addresses)
         if(error) yield put(fetchAddressesFailure(error))
     } catch (error){
         yield put(fetchAddressesFailure(error))
     }
+    
 }
 
 

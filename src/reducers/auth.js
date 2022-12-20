@@ -11,7 +11,7 @@ const defaultState = {
 function auth(state = defaultState, action){
 	switch (action.type) {
 		case LOG_IN: {
-			return {...state, isLoggedIn: true}
+			return {...state, isLoggedIn: true, authToken:action.payload }
 		} 
 		case LOG_OUT: {
 			return {...state, isLoggedIn: false}

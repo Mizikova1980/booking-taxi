@@ -7,6 +7,7 @@ import Header from './../Header/Header'
 import PageContent from './../PageContent/PageContent'
 import { Routes, Route } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 
 
@@ -17,7 +18,8 @@ import { useNavigate } from 'react-router-dom'
  function Home (events) {
         
         const navigate = useNavigate()
-
+        const {authToken} = useSelector(state => state.auth)
+        console.log(authToken)
         return (
             <div className='wrapper-content'>   
                <Header />
