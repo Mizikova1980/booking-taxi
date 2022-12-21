@@ -1,42 +1,55 @@
 import React, {useEffect, useState} from 'react'
 import Select from '../UI/select'
-import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import {fetchAddressesList} from './../../actions.js'
-//import {fetchAddresses} from './../../api.js'
+import {bookingCompleted} from './../../actions'
+
 
 
 
 export default function BookingForm() {
-    
+    const addresses = useSelector(state => state.addressesList)
     const dispatch = useDispatch();
-    const navigate = useNavigate()
-    const selectArr = []
-    function fetch (e) {
-        console.log('ghb')
-        dispatch(fetchAddressesList())
-        console.log('oihrgaih')
-        
-    }
+    const {isBookingCompleted} = useSelector(state => state.booking)
+
     
-    const addresses = useSelector(state => state.addresses)
-    console.log(addresses)
+    
+    
+    const selectArr = [
+        {text: addresses.addresses[0], value: '0'},
+        {text: addresses.addresses[1], value: '1'},
+        {text: addresses.addresses[2], value: '2'},
+        {text: addresses.addresses[3], value: '3'},
+    ]
+ 
+
+    const [selectText1, setSelectText1] = React.useState(null);
+    const [selectText2, setSelectText2] = React.useState(null);
+
+
+    function send(e){
+        e.preventDefault();
+        const address1 = selectText1
+        const address2 = selectText2
+        dispatch(bookingCompleted(address1, address2))
+        console.log(isBookingCompleted)
         
-    const [selectValue, setSelectValue] = React.useState(null);
+      }
+
+
    
     
     return (
-        <div className='map-container'>
-            <form className='form-booking' onClick={fetch}> 
-                 <div className='route'>
-                    <div className='label-wrap' >
+        <div className='map-container' >
+            <form className='form-booking' onSubmit={send}  > 
+                 <div className='route' >
+                    <div className='label-wrap'  >
                         <label htmlFor='from' className=''>
-                            <Select list={selectArr} preview="Откуда" onChange={e => setSelectValue(e.value) }  id='from' type='' name='from'/>
+                            <Select list={selectArr} preview="Откуда" onChange={e => setSelectText1(e.text)}  id='from' type='' name='from' />
                         </label>
                     </div>
                     <div className='label-wrap'>
                         <label htmlFor='to' className=''>
-                        <Select list={selectArr} preview="Куда" onChange={e => setSelectValue(e.value) } id='to' type='' name='to'/>
+                        <Select list={selectArr} preview="Куда" onChange={e => setSelectText2(e.text) } id='to' type='' name='to'/>
                     </label>
                     </div>
                 </div>
@@ -61,7 +74,7 @@ export default function BookingForm() {
                     </div>
                   
                 </div>
-                <button type='submit' className='form-btn' onClick={() => navigate('/bookingComplited')}>Заказать</button>
+                <button type='submit' className='form-btn' >Заказать</button>
             </form>
         </div>
     )

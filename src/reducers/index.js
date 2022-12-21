@@ -1,10 +1,12 @@
 import { combineReducers } from "redux"
 import auth from "./auth"
-import addresses from './addressesList'
+import addressesList from './addressesList'
 import regCard from "./regCard"
+import booking from './booking'
 
 export default combineReducers({
     auth,
     regCard,
-    addresses
+    addressesList,
+    booking
 })

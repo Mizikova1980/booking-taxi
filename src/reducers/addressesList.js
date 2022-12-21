@@ -1,4 +1,4 @@
-import {FETCH_ADDRESSES_REQUEST}  from '../actions'
+import {FETCH_ADDRESSES_SUCCESS}  from '../actions'
 
 
 
@@ -6,9 +6,9 @@ const defaultState = {
     addresses: [],
 }
 
-const addresses = (state = defaultState, action) => {
+const addressesList = (state = defaultState, action) => {
     switch (action.type) {
-		case FETCH_ADDRESSES_REQUEST: {
+		case FETCH_ADDRESSES_SUCCESS: {
 			return {...state, addresses:action.payload }
 		} 
 		
@@ -17,4 +17,4 @@ const addresses = (state = defaultState, action) => {
 	}
 }
 
-export default addresses
+export default addressesList

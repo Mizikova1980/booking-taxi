@@ -30,8 +30,7 @@ export const fetchRoute = (address1, address2) => {
 
 	const ops = {
 		method: 'GET',
-		headers: {'Content-Type': 'application/json'},
-		body: JSON.stringify({address1, address2})
+		
 	};
 	console.log(ops)
 	return fetch(`https://loft-taxi.glitch.me/route?address1=${address1}&address2=${address2}`, ops).then(res => res.json())
