@@ -1,15 +1,60 @@
 import React, {useEffect, useRef, useState} from 'react'
 import mapboxgl from 'mapbox-gl'
 import  './Map.css'
-import { useSelector } from 'react-redux'
-import {drawRoute} from './drawRoute'
+import { useSelector, useDispatch } from 'react-redux'
+
 
 
 export default function Map(events) {
     const mapContainer = useRef(null)
+    const dispatch = useDispatch()
     
     const [map, setMap] = useState(null)
     const coordinates = useSelector(state => state.booking.coords)
+    const [isRoute, setIsRoute] = useState(false)
+    
+    
+    const route_id = 'route';
+
+
+ const drawRoute = (map, coordinates) => {
+
+    console.log(map, coordinates)
+
+    map.flyTo({
+        center: coordinates[0],
+        zoom: 15
+    });
+
+    map.addLayer({
+        id: route_id,
+        type: "line",
+        source: {
+            type: "geojson",
+            data: {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                    type: "LineString",
+                    coordinates
+                }
+            }
+        },
+        layout: {
+            "line-join": "round",
+            "line-cap": "round"
+        },
+        paint: {
+            "line-color": "#ffc617",
+            "line-width": 8
+        }
+    });
+    setIsRoute(true)
+    console.log(isRoute)
+    
+};
+
+
     
     
     useEffect(() => {
@@ -18,15 +63,15 @@ export default function Map(events) {
             try {
 
                 drawRoute(map, coordinates)
+                
             } catch (error) {
                 console.log(error)
             }
         }
-    
+                    
     }, [coordinates])
-    
-    
-    
+      
+      
     
     useEffect(() => {
         
@@ -39,6 +84,7 @@ export default function Map(events) {
         });
         setMap(map)
         
+       
         return () => {
             map.remove()
         }

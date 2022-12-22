@@ -19,10 +19,10 @@ export default function BookingForm() {
 
     
     const selectArr = [
-        {text: addresses.addresses[0], value: '0'},
-        {text: addresses.addresses[1], value: '1'},
-        {text: addresses.addresses[2], value: '2'},
-        {text: addresses.addresses[3], value: '3'},
+        addresses.addresses[0],
+        addresses.addresses[1],
+        addresses.addresses[2],
+        addresses.addresses[3],
     ]
  
 
@@ -38,12 +38,11 @@ export default function BookingForm() {
         const from ="Откуда"
           return (
             <Autocomplete
-            options={selectArr}
-              getOptionLabel={(option) => option.text}
-              filterOptions={filterOptions}
-              filterSelectedOptions={true}
-              onChange={e => setSelectText1(e.target.textContent)}
-              sx={{ width: 300 }}
+            value={selectText1}
+            onChange={(event: any, newValue: string | null) => {setSelectText1(newValue)}}
+             inputValue={inputValue1}
+             onInputChange={(event, newInputValue) => {setInputValue1(newInputValue)}}
+              options={selectArr}
               renderInput={(params) => <TextField {...params} placeholder={from} />}
             />
           
@@ -53,12 +52,11 @@ export default function BookingForm() {
         const to ="Куда"
           return (
             <Autocomplete
+            value={selectText2}
+            onChange={(event: any, newValue: string | null) => {setSelectText2(newValue)}}
+             inputValue={inputValue2}
+             onInputChange={(event, newInputValue) => {setInputValue2(newInputValue)}}
               options={selectArr}
-              getOptionLabel={(option) => option.text}
-              filterOptions={filterOptions}
-              filterSelectedOptions={true}
-              onChange={e => setSelectText2(e.target.textContent)}
-              sx={{ width: 300 }}
               renderInput={(params) => <TextField {...params}  placeholder={to} />}
             />
           
