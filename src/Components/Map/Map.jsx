@@ -6,7 +6,6 @@ import {drawRoute} from './drawRoute'
 
 
 export default function Map(events) {
-    const state = useSelector (state => state)
     const mapContainer = useRef(null)
     
     const [map, setMap] = useState(null)
@@ -17,13 +16,14 @@ export default function Map(events) {
         
         if (map) {
             try {
+
                 drawRoute(map, coordinates)
             } catch (error) {
                 console.log(error)
             }
         }
     
-    }, [map, coordinates])
+    }, [coordinates])
     
     
     
@@ -42,7 +42,7 @@ export default function Map(events) {
         return () => {
             map.remove()
         }
-    }, [state])
+    }, [])
     
     
     

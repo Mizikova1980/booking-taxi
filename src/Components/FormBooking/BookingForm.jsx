@@ -26,17 +26,21 @@ export default function BookingForm() {
     ]
  
 
-    const [selectText1, setSelectText1] = React.useState(null);
-    const [selectText2, setSelectText2] = React.useState(null);
+    const [selectText1, setSelectText1] = React.useState('Откуда');
+    const [selectText2, setSelectText2] = React.useState('Куда');
+    
+    
 
+    
 
-    function Address1 (props) {
+    function Address1 () {
         const from ="Откуда"
           return (
             <Autocomplete
               options={selectArr}
               getOptionLabel={(option) => option.text}
               filterOptions={filterOptions}
+              onChange={e => setSelectText1(e.target.textContent)}
               filterSelectedOptions={true}
               sx={{ width: 300 }}
               renderInput={(params) => <TextField {...params} placeholder={from} />}
@@ -44,19 +48,22 @@ export default function BookingForm() {
           
           );
       }
-      function Address2 (props) {
-        const to =""
+      function Address2 () {
+        const to ="Куда"
           return (
             <Autocomplete
+              
               options={selectArr}
               getOptionLabel={(option) => option.text}
               filterOptions={filterOptions}
               filterSelectedOptions={true}
+              onChange={e => setSelectText2(e.target.textContent)}
               sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} placeholder={to} />}
+              renderInput={(params) => <TextField {...params}  placeholder={to}/>}
             />
           
           );
+
       }
 
       interface OptionType {
@@ -65,14 +72,18 @@ export default function BookingForm() {
       }
 
 
+
+      
+
     function send(e){
         e.preventDefault();
         const address1 = selectText1
         const address2 = selectText2
         dispatch(bookingCompleted(address1, address2))
-        console.log(isBookingCompleted)
-        
-      }
+        console.log(address1, address2)
+
+
+    }
     
     return (
         <div className='map-container' >
@@ -80,12 +91,12 @@ export default function BookingForm() {
                  <div className='route' >
                     <div className='label-wrap'  >
                         <label htmlFor='from' className=''>
-                            <Address1 onChange={e => setSelectText1(e.text)}  id='from' type='' name='from' />
+                            <Address1 />
                         </label>
                     </div>
                     <div className='label-wrap'>
                         <label htmlFor='to' className=''>
-                        <Address2  onChange={e => setSelectText2(e.text) } id='to' type='' name='to'/>
+                        <Address2 />
                     </label>
                     </div>
                     </div>

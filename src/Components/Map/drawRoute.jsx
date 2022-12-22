@@ -1,27 +1,22 @@
 import React from "react";
 
 
+const route_id = 'route';
 
 
 export const drawRoute = (map, coordinates) => {
-    const layerId = 'one'
-    const getId = () => `route${ layerId }`;
 
-    const id = getId();
+    console.log(map, coordinates)
 
     map.flyTo({
         center: coordinates[0],
         zoom: 15
     });
 
-    if(map.getLayer(id)){
-        map.removeLayer(id);
-    }
 
-    layerId++;
 
     map.addLayer({
-        id: getId(),
+        id: route_id,
         type: "line",
         source: {
             type: "geojson",
