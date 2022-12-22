@@ -7,8 +7,10 @@ import { theme } from "loft-taxi-mui-theme"
 import {ThemeProvider} from '@mui/material/styles'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux';
-import {store} from './store'
+import {store, persistor} from './store'
 import { StyledEngineProvider } from '@mui/material/styles'
+import { PersistGate } from 'redux-persist/lib/integration/react'
+
 
 
 
@@ -19,12 +21,14 @@ root.render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
       <Provider store={store}>
-        <BrowserRouter>
-          <ThemeProvider theme={theme}>
-            <App />
-          </ThemeProvider>
-          </BrowserRouter>
-        </Provider>
+        <PersistGate loading={null} persistor={persistor}>
+          <BrowserRouter>
+            <ThemeProvider theme={theme}>
+              <App />
+            </ThemeProvider>
+            </BrowserRouter>
+        </PersistGate>
+      </Provider>
     </StyledEngineProvider>
   </React.StrictMode>
 );

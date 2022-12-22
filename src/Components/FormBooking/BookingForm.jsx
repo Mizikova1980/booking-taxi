@@ -26,22 +26,23 @@ export default function BookingForm() {
     ]
  
 
-    const [selectText1, setSelectText1] = React.useState('Откуда');
-    const [selectText2, setSelectText2] = React.useState('Куда');
-    
-    
+    const [selectText1, setSelectText1] = React.useState(null);
+    const [inputValue1, setInputValue1] = React.useState("");
 
-    
+    const [selectText2, setSelectText2] = React.useState(null);
+    const [inputValue2, setInputValue2] = React.useState("");
+
+       
 
     function Address1 () {
         const from ="Откуда"
           return (
             <Autocomplete
-              options={selectArr}
+            options={selectArr}
               getOptionLabel={(option) => option.text}
               filterOptions={filterOptions}
-              onChange={e => setSelectText1(e.target.textContent)}
               filterSelectedOptions={true}
+              onChange={e => setSelectText1(e.target.textContent)}
               sx={{ width: 300 }}
               renderInput={(params) => <TextField {...params} placeholder={from} />}
             />
@@ -52,14 +53,13 @@ export default function BookingForm() {
         const to ="Куда"
           return (
             <Autocomplete
-              
               options={selectArr}
               getOptionLabel={(option) => option.text}
               filterOptions={filterOptions}
               filterSelectedOptions={true}
               onChange={e => setSelectText2(e.target.textContent)}
               sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params}  placeholder={to}/>}
+              renderInput={(params) => <TextField {...params}  placeholder={to} />}
             />
           
           );
@@ -96,7 +96,7 @@ export default function BookingForm() {
                     </div>
                     <div className='label-wrap'>
                         <label htmlFor='to' className=''>
-                        <Address2 />
+                        <Address2  />
                     </label>
                     </div>
                     </div>
