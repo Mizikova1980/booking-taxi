@@ -1,8 +1,14 @@
-import React, {useEffect, useState} from 'react'
-import Select from '../UI/select'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {bookingCompleted} from './../../actions'
+import TextField from '@mui/material/TextField';
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete'
 
+const filterOptions = createFilterOptions({
+    matchFrom: 'start',
+    stringify: (option: OptionType) => option.text,
+  });
+  
 
 
 
@@ -11,8 +17,6 @@ export default function BookingForm() {
     const dispatch = useDispatch();
     const {isBookingCompleted} = useSelector(state => state.booking)
 
-    
-    
     
     const selectArr = [
         {text: addresses.addresses[0], value: '0'},
@@ -26,6 +30,41 @@ export default function BookingForm() {
     const [selectText2, setSelectText2] = React.useState(null);
 
 
+    function Address1 (props) {
+        const from ="Откуда"
+          return (
+            <Autocomplete
+              options={selectArr}
+              getOptionLabel={(option) => option.text}
+              filterOptions={filterOptions}
+              filterSelectedOptions={true}
+              sx={{ width: 300 }}
+              renderInput={(params) => <TextField {...params} placeholder={from} />}
+            />
+          
+          );
+      }
+      function Address2 (props) {
+        const to =""
+          return (
+            <Autocomplete
+              options={selectArr}
+              getOptionLabel={(option) => option.text}
+              filterOptions={filterOptions}
+              filterSelectedOptions={true}
+              sx={{ width: 300 }}
+              renderInput={(params) => <TextField {...params} placeholder={to} />}
+            />
+          
+          );
+      }
+
+      interface OptionType {
+        text: string;
+        value: number;
+      }
+
+
     function send(e){
         e.preventDefault();
         const address1 = selectText1
@@ -34,9 +73,6 @@ export default function BookingForm() {
         console.log(isBookingCompleted)
         
       }
-
-
-   
     
     return (
         <div className='map-container' >
@@ -44,15 +80,15 @@ export default function BookingForm() {
                  <div className='route' >
                     <div className='label-wrap'  >
                         <label htmlFor='from' className=''>
-                            <Select list={selectArr} preview="Откуда" onChange={e => setSelectText1(e.text)}  id='from' type='' name='from' />
+                            <Address1 onChange={e => setSelectText1(e.text)}  id='from' type='' name='from' />
                         </label>
                     </div>
                     <div className='label-wrap'>
                         <label htmlFor='to' className=''>
-                        <Select list={selectArr} preview="Куда" onChange={e => setSelectText2(e.text) } id='to' type='' name='to'/>
+                        <Address2  onChange={e => setSelectText2(e.text) } id='to' type='' name='to'/>
                     </label>
                     </div>
-                </div>
+                    </div>
                 <div className='cars'>
                     <div className='cars__item'>
                         <div className='rate'>Стандарт</div>

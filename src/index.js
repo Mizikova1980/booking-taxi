@@ -8,6 +8,7 @@ import {ThemeProvider} from '@mui/material/styles'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux';
 import {store} from './store'
+import { StyledEngineProvider } from '@mui/material/styles'
 
 
 
@@ -16,13 +17,15 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-        </BrowserRouter>
-      </Provider>
+    <StyledEngineProvider injectFirst>
+      <Provider store={store}>
+        <BrowserRouter>
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
+          </BrowserRouter>
+        </Provider>
+    </StyledEngineProvider>
   </React.StrictMode>
 );
 
