@@ -17,7 +17,7 @@ export default function Map(events) {
 
 
     const drawRoute = (map, coordinates) => {
-        
+        console.log(isNewRoute)   
     map.flyTo({
         center: coordinates[0],
         zoom: 15
@@ -64,18 +64,20 @@ export default function Map(events) {
     }, [coordinates])
       
     useEffect(() => {
+        console.log(isNewRoute)
         
-        if (isNewRoute) {
-            try {
-
-               map.removeLayer(route_id)
+        if (isNewRoute) 
+        
+        try {
+        map.removeLayer(route_id)
+        map.removeSource(route_id)
                 
             } catch (error) {
                 console.log(error)
             }
-        }
+        
                     
-    }, [coordinates])
+    }, [route_id, isNewRoute])
     
 
 

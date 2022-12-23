@@ -13,10 +13,10 @@ const defaultState = {
 function booking (state = defaultState, action){
 	switch (action.type) {
 		case BOOKING_COMPLETED: {
-			return {...state, isBookingCompleted: true}
+			return {...state, isBookingCompleted: true, isNewRoute:false}
 		} 
 		case BOOKING_COMPLETED_SUCCESS: {
-			return {...state, isBookingSuccess: true, isBookingCompleted: true, coords: action.payload}
+			return {...state, isBookingSuccess: true, isBookingCompleted: true, isNewRoute:false, coords: action.payload}
 		}
 		case CLOSE_FORM_BOOKING_MODAL: {
 			return {...state, isBookingSuccess: false, isBookingCompleted: false, isNewRoute:true, coords: []}
