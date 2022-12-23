@@ -13,7 +13,7 @@ export const FETCH_ADDRESSES_SUCCESS = 'FETCH_ADDRESSES_SUCCESS'
 export const BOOKING_COMPLETED = 'BOOKING_COMPLETED'
 export const BOOKING_COMPLETED_SUCCESS = 'BOOKING_COMPLETED_SUCCESS'
 export const CLOSE_FORM_BOOKING_MODAL = 'CLOSE_FORM_BOOKING_MODAL'
-
+export const CLOSE_FORM_PROFILE_MODAL = 'CLOSE_FORM_PROFILE_MODAL'
 
 
 
@@ -28,4 +28,5 @@ export const fetchAddressesSuccess = (addresses) => ({type: FETCH_ADDRESSES_SUCC
 export const bookingCompleted = (address1, address2) => ({type: BOOKING_COMPLETED, payload: {address1, address2}})
 export const bookingSuccess = (coords) => ({type:BOOKING_COMPLETED_SUCCESS, payload: coords})
 export const closeFormBookingModal = () => ({type: CLOSE_FORM_BOOKING_MODAL})
+export const closeProfileModal = () => ({type: CLOSE_FORM_PROFILE_MODAL})
 

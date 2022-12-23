@@ -1,9 +1,7 @@
 import React, {useState} from 'react'
-import { Input, TextField } from '@mui/material'
+import { Input } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import {registrationCard} from './../../actions.js'
-import {useForm, Controller, register, setValue} from 'react-hook-form'
-
 
 const placeHolder = (preview, value, simbol) => {
     Array.from(value).forEach(el => preview = preview.replace(simbol, el) )
@@ -11,87 +9,68 @@ const placeHolder = (preview, value, simbol) => {
     return preview.replace(/(\d?)\D+$/, "$1")
   }
   
-  const regName = (value) => value.replace(/\d/g, '')
-  const regCVC = (value) => value.replace(/\D/g, '').substr(0, 3)
-  const regDate = (value) => placeHolder('**/**', value.replace(/\D/g, ''), '*')
-  const regCard = (value) => placeHolder('**** **** **** ****', value.replace(/\D/g, ''), '*')
-     
+  
+  
+  const regCard = (value) => placeHolder("**** **** **** ****", value.replace(/\D/g, ""), "*")
+  
+  const regDate = (value) => placeHolder("**/**", value.replace(/\D/g, ""), "*")
+  
+  const regCVC = (value) => value.replace(/\D/g, "").substr(0, 3)
+  
+  const regName = (value) => value.replace(/\d/g, "")
 
-    export default function ProfileForm(params) {
-    const {authToken} = useSelector(state => state.auth)
+  
+
+export default function ProfileForm(params) {
     const dispatch = useDispatch();
-    const {control, register, handleSubmit, setValue} = useForm()
-
-    const onSubmit = (data) => {
-        const {name, card, date, cvc} = data              
-        let cardNumber = Number(card.split(' ').join(''));
-            let mm = Number(date.split('/')[0]);
-            let yy = Number(date.split('/')[1]);
-            let expiryDate=mm+'/'+yy
-            let cardName = name
-            let token = authToken
-            let body= {cardNumber, expiryDate, cardName, cvc, token}
-            dispatch(registrationCard(body))
-        
-            console.log(body)
-      };
+    const {authToken} = useSelector(state => state.auth)
+    const {isRegCard} = useSelector(state => state.regCard)
     
-      const [name, setName] = useState("")
+    
+    
+        const [name, setName] = useState("")
         const [card, setCard] = useState("")
         const [date, setDate] = useState("")
         const [cvc, setCvc] = useState("")
+
+        function send(e){
+            e.preventDefault();
+            let cardNumber = Number(card.split(' ').join(''));
+            let mm = Number(date.split('/')[0]);
+            let yy = Number(date.split('/')[1]);
+            let expiryDate=mm+'/'+yy
+            let cardName = setName
+            let token = authToken
+            let body= {cardNumber, expiryDate, cardName, cvc, token}
+            dispatch(registrationCard(body))
+            console.log(isRegCard)    
+            console.log(body)    
+          }
     
     return (
         <div className='form-wrapper'>
             <h1 className='form-title'>Профиль</h1>
             <div className='form-desc'>Введите платежные данные</div>
-            <form className='form-profile' autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
+            <form className='form-profile' autoComplete='off' onSubmit={send}>
                 <div className='form-profile form-profile__items items'>
                 <div className='item-left'>
                     <div className='label-wrap'>
                         <label htmlFor='userName' className='form-label'>Имя владельца</label>
-                        <TextField
-                            id='name'
-                            className='form-input'
-                            {...register("name", { required: true })}
-                        />
+                        <Input value={name} onChange={(e) => setName(regName(e.target.value))} id='userName' type='name' name='userName' className='form-input'/>
                     </div>
                     <div className='label-wrap'>
                         <label htmlFor='userCard' className='form-label'>Номер карты</label>
-                        <TextField
-                            id='card'
-                            className='form-input'
-                            onChange={e => setValue(e.target.value)}
-                            {...register("card", { onChange: (e) => {
-                                setValue('card', regCard(e.target.value))
-                                
-                            }})}
-                        />
-                        
+                        <Input value={card} onChange={e => setCard(regCard(e.target.value))} id='userCard' type='' name='userCard' className='form-input'/>
                     </div>
                     <div>
                     <div className='label-wrap label-wrap__inline'>
                         <div className='label-wrap label-wrap__mr'>
                             <label htmlFor='cardDate' className='form-label'>MM/YY</label>
-                            <TextField
-                            id='date'
-                            onChange={e => setValue(e.target.value)}
-                            {...register("date", { onChange: (e) => {
-                                setValue('date', regDate(e.target.value))
-
-                            }})}
-                        />
-                         </div>
+                            <Input value={date} onChange={e => setDate(regDate(e.target.value))} id='cardDate' type='text' name='cardDate' className='form-input'/>
+                        </div>
                         <div className='label-wrap'>
                             <label htmlFor='cardCVC' className='form-label'>CVC</label>
-                            <TextField
-                            id='cvc'
-                            className='form-input'
-                            onChange={e => setCvc(e.target.value)}
-                            {...register("cvc", { onChange: (e) => {
-                                setValue('cvc', regCVC(e.target.value))
-                            }})}
-                            />
+                            <Input value={cvc} onChange={e => setCvc(regCVC(e.target.value))} id='cardCVC' type='text' name='cardCVC' className='form-input'/>
                         </div>
                     </div>
                     </div>
@@ -104,21 +83,9 @@ const placeHolder = (preview, value, simbol) => {
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M16.5 33C25.6127 33 33 25.6127 33 16.5C33 14.5863 32.6742 12.7487 32.0751 11.0396L11.0396 32.0751C12.7487 32.6742 14.5863 33 16.5 33ZM3.16676 26.2217L11.2627 18.1258L1.91481 8.7779C0.692428 11.0819 0 13.7101 0 16.5C0 20.1349 1.17536 23.4952 3.16676 26.2217ZM8.7779 1.91481L18.1258 11.2627L26.2217 3.16676C23.4952 1.17536 20.1349 0 16.5 0C13.7101 0 11.0819 0.692428 8.7779 1.91481Z" fill="#FDBF5A"/>
                             </svg>
                             </div>
-                            <div className='card-date'>
-                            <Controller
-                            render={({ field: { onChange, value } }) => <Input className='form-input' onChange={onChange} value={value}/>}
-                            name="date"
-                            control={control}
-                            />
-                            </div>
+                            <div className='card-date'>{date}</div>
                         </div>
-                            <div className='card-number'>
-                            <Controller
-                            render={({ field: { onChange, value } }) => <Input className='form-input' onChange={onChange} value={value} />}
-                            name="card"
-                            control={control}
-                         />
-                            </div>
+                            <div className='card-number'>{card}</div>
                         <div>
                             <div className='cardView__icons'>
                                 <div className='cardView__icons ardView__icons--left'>

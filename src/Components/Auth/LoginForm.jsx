@@ -1,15 +1,16 @@
 import React from 'react';
 import { Input } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import {fetchAddressesList} from './../../actions.js'
+
 
 
 export default function LoginForm(events) {
   const dispatch = useDispatch();
     const navigate = useNavigate()
-    const registration = () => navigate('/registration') 
-    
+    const registration = () => navigate('/registration')
+       
 
     function fetch (e) {
         dispatch(fetchAddressesList())
@@ -17,7 +18,7 @@ export default function LoginForm(events) {
     
     return (
         
-        <div className='form-login' onClick={fetch}>
+        <form className='form-login' onClick={fetch}>
             <h1 className='form-title'>Войти</h1>
             <label htmlFor="email" className='label-login'>Email</label>
             <Input id='email' type='email' name='email'className='form-input' placeholder='mail@mail.ru' required></Input>
@@ -33,7 +34,7 @@ export default function LoginForm(events) {
                 Регистрация
                 </span>
             </div>
-        </div>
+        </form>
     )
 };
 

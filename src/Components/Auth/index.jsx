@@ -21,12 +21,12 @@ function AuthForm(events) {
   
   
     return (<>
-      <form className="AuthForm" onSubmit={send}>
+      <div className="AuthForm" onSubmit={send}>
         <Routes>
           <Route path="/registration" element={<Auth/>} />
           <Route path="*" element={<LoginForm/>} />
         </Routes>
-      </form>
+      </div>
     </>);
   }
   
