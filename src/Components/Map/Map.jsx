@@ -11,16 +11,13 @@ export default function Map(events) {
     
     const [map, setMap] = useState(null)
     const coordinates = useSelector(state => state.booking.coords)
-    const [isRoute, setIsRoute] = useState(false)
-    
-    
+    const {isNewRoute} = useSelector(state => state.booking)
+      
     const route_id = 'route';
 
 
- const drawRoute = (map, coordinates) => {
-
-    console.log(map, coordinates)
-
+    const drawRoute = (map, coordinates) => {
+        
     map.flyTo({
         center: coordinates[0],
         zoom: 15
@@ -49,12 +46,7 @@ export default function Map(events) {
             "line-width": 8
         }
     });
-    setIsRoute(true)
-    console.log(isRoute)
-    
 };
-
-
     
     
     useEffect(() => {
@@ -71,7 +63,22 @@ export default function Map(events) {
                     
     }, [coordinates])
       
-      
+    useEffect(() => {
+        
+        if (isNewRoute) {
+            try {
+
+               map.removeLayer(route_id)
+                
+            } catch (error) {
+                console.log(error)
+            }
+        }
+                    
+    }, [coordinates])
+    
+
+
     
     useEffect(() => {
         

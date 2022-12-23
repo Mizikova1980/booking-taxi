@@ -5,7 +5,8 @@ import {BOOKING_COMPLETED, BOOKING_COMPLETED_SUCCESS, CLOSE_FORM_BOOKING_MODAL} 
 const defaultState = {
 	coords: [],  
 	isBookingCompleted: false,
-	isBookingSuccess:false
+	isBookingSuccess:false,
+	isNewRoute:false
 };
 
 
@@ -18,7 +19,7 @@ function booking (state = defaultState, action){
 			return {...state, isBookingSuccess: true, isBookingCompleted: true, coords: action.payload}
 		}
 		case CLOSE_FORM_BOOKING_MODAL: {
-			return {...state, isBookingSuccess: false, isBookingCompleted: false}
+			return {...state, isBookingSuccess: false, isBookingCompleted: false, isNewRoute:true, coords: []}
 		} 
 		default: return state
 	}

@@ -14,7 +14,8 @@ const sagaMiddleware = createSagaMiddleware()
 const persistConfig = {
     key: 'root',
     storage: storage,
-    stateReconciler: autoMergeLevel2
+    stateReconciler: autoMergeLevel2,
+    blacklist: ['booking']
    };
 
 const pReducer = persistReducer(persistConfig, reducers);

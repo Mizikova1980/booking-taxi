@@ -6,6 +6,8 @@ const defaultState = {
 	authToken: '',
 	isLoggedIn: false,
 	isBookingCompleted: false,
+	isBookingSuccess: false,
+	isNewRoute:false,
 	addresses: [],
 	coords: []
 	
@@ -15,20 +17,20 @@ const defaultState = {
 function auth(state = defaultState, action){
 	switch (action.type) {
 		case LOG_IN: {
-			return {...state, isLoggedIn: true, authToken:action.payload, isBookingCompleted: false, addresses:action.payload }
+			return {...state, isLoggedIn: true, authToken:action.payload, addresses:action.payload }
 		} 
 		case LOG_OUT: {
-			return {...state, isLoggedIn: false, isBookingCompleted: false}
+			return {...state, isLoggedIn: false}
 		}
 		case BOOKING_COMPLETED: {
-			return {...state, isBookingCompleted: true, isLoggedIn: true, authToken:action.payload, addresses:action.payload}
+			return {...state, isBookingCompleted: true}
 		} 
 		case BOOKING_COMPLETED_SUCCESS: {
-			return {...state, isBookingCompleted: true, coords: action.payload}
+			return {...state, isBookingSuccess: true, isBookingCompleted: true, coords: action.payload}
 		}
 		case CLOSE_FORM_BOOKING_MODAL: {
-			return {...state, isBookingSuccess: false, isBookingCompleted: false}
-		} 
+			return {...state, isBookingSuccess: false, isBookingCompleted: false, isNewRoute:true, coords: []}
+		}
 		default: return state
 	}
 }
